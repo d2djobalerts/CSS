@@ -2,10 +2,6 @@
 const btn_submit = document.querySelector('.submit');
 const responsibilities_Next_Button1 = document.querySelector('.responsibilitiesNextButton1');
 const skills_Eligibility_Button1 = document.querySelector('.skillsAndEligibilityNextButton1');
-let fbo = '{' ;
-let fbc = '}';
-let obj='';
-let objcombiner='';
 
 
 
@@ -54,24 +50,21 @@ btn_submit.addEventListener('click', function(){
     const experience = document.querySelector('.experience').value;
     const qualification = document.querySelector('.qualification').value;
     
-    const job_Apply_URL = document.querySelector('.jobApplyURL').value;    
-    // const output_here = document.querySelector('.output');
+    const job_Apply_URL = document.querySelector('.jobApplyURL').value;
     
 
-    const object = `{
-
-
+    const obj = `{
         ${company_name} : {
-            jobTitle : '${job_title}' ,
+            jobTitle : ${job_title} ,
             imgSrc : '${image_src}',
-            imgSrcTelegram : '${image_src_telegram}',
-            imgSrcWhatsapp : '${image_src_whatsapp}',
-            description : '${description}' ,
-            companyName : '${company_name}' ,
-            role : '${role}' ,
-            location : '${location}' ,
-            experience : '${experience}' ,
-            qualification : '${qualification}' ,
+            imgSrcTelegram : ${image_src_telegram},
+            imgSrcWhatsapp : ${image_src_whatsapp},
+            description : ${description} ,
+            companyName : ${company_name} ,
+            role : ${role} ,
+            location : ${location} ,
+            experience : ${experience} ,
+            qualification : ${qualification} ,
 
             responsibilities : 
                 ${keyGenerate(res_value,'responsibilities')},
@@ -86,35 +79,27 @@ btn_submit.addEventListener('click', function(){
                 4 : 'Fill formand APPLY'
             },
     
-            jobApplyURL : '${job_Apply_URL}',
-            telegramChannelURL : '${job_Apply_URL}',
-            whatsAppChannelURL : '${job_Apply_URL}',
-            imstagramChannelURL : '${job_Apply_URL}',
-        },
-    `
-    // obj = fbo+object+fbc;
-    // obj = 
-    console.log('-----------------')
-    console.log('-----------------')
-    console.log(object);
-    document.querySelector('.output').insertAdjacentHTML('beforeend',object);
-    // objcombiner= objcombiner+object;
-    // console.log(fbo+objcombiner+fbc);
-    // obj = fbo+objcombiner+fbc;
+            jobApplyURL : ${job_Apply_URL},
+            telegramChannelURL : ,
+            whatsAppChannelURL : ,
+            imstagramChannelURL : ,
+        }
+    }`
+    console.log(obj);
 });
 
 function keyGenerate(res_value,skillOrResponse){
-    // console.log('res_value=',res_value,skillOrResponse)
+    console.log('res_value=',res_value,skillOrResponse)
     if((skillOrResponse === 'responsibilities')){
         skillOrResponse = 'responsibilities';
     }
     let responsibilityStep ='';
     let kvRes = '';
     for(let i=1; i<=res_value; i++){
-        // console.log('-------------')
-        // console.log("."+skillOrResponse+`${i}`);
+        console.log('-------------')
+        console.log("."+skillOrResponse+`${i}`);
         let value = document.querySelector("."+skillOrResponse+`${i}`+"").value;
-        let tag = i + ':' + "'"+value +"'"+',';
+        let tag = i + ':' + value +',';
         responsibilityStep = responsibilityStep+tag;
     }
     // let a = ".responsibilities"+`${res_value}`
