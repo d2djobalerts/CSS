@@ -2,6 +2,7 @@
 const btn_submit = document.querySelector('.submit');
 const responsibilities_Next_Button1 = document.querySelector('.responsibilitiesNextButton1');
 const skills_Eligibility_Button1 = document.querySelector('.skillsAndEligibilityNextButton1');
+const job_Apply_URL_NextButton1 = document.querySelector('.jobApplyURLNextButton1');
 let fbo = '{' ;
 let fbc = '}';
 let obj='';
@@ -13,7 +14,7 @@ let res_value =1;
 responsibilities_Next_Button1.addEventListener( 'click',function(){
     res_value++;
     const html = 
-        `<label for="responsibilities${res_value}">responsibilities${res_value}</label>
+        `<br><label for="responsibilities${res_value}">responsibilities${res_value}</label>
         <input type="text" class="responsibilities${res_value}"><br>
     `
     document.querySelector('.response').insertAdjacentHTML('beforeend',html);
@@ -26,10 +27,21 @@ let skills_value =1;
 skills_Eligibility_Button1.addEventListener( 'click',function(){
     skills_value++;
     const html = 
-        `<label for="skillsAndEligibility${skills_value}">skillsAndEligibility${skills_value}</label>
+        `<br><label for="skillsAndEligibility${skills_value}">skillsAndEligibility${skills_value}</label>
         <input type="text" name="title" class="skillsAndEligibility${skills_value}"><br>
     `
     document.querySelector('.skillsEligibility').insertAdjacentHTML('beforeend',html);
+    
+});
+
+let job_URL_value =1;
+job_Apply_URL_NextButton1.addEventListener( 'click',function(){
+    job_URL_value++;
+    const html = 
+        `<br><label for="jobApplyURL${job_URL_value}">jobApplyURL${job_URL_value}</label>
+        <input type="text" name="title" class="jobApplyURL${job_URL_value}"><br>
+    `
+    document.querySelector('.jobApplyURL').insertAdjacentHTML('beforeend',html);
     
 });
 
@@ -85,8 +97,9 @@ btn_submit.addEventListener('click', function(){
                 3 : 'Redirects to official page',
                 4 : 'Fill formand APPLY'
             },
-    
-            jobApplyURL : '${job_Apply_URL}',
+            
+            jobApplyURL :
+                ${keyGenerate(job_URL_value,'jobApplyURL')},
             telegramChannelURL : '${job_Apply_URL}',
             whatsAppChannelURL : '${job_Apply_URL}',
             imstagramChannelURL : '${job_Apply_URL}',
@@ -107,6 +120,12 @@ function keyGenerate(res_value,skillOrResponse){
     // console.log('res_value=',res_value,skillOrResponse)
     if((skillOrResponse === 'responsibilities')){
         skillOrResponse = 'responsibilities';
+    }
+    if((skillOrResponse === 'skillsAndEligibility')){
+        skillOrResponse = 'skillsAndEligibility';
+    }
+    if((skillOrResponse === 'jobApplyURL')){
+        skillOrResponse = 'jobApplyURL';
     }
     let responsibilityStep ='';
     let kvRes = '';
